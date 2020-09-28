@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    label {
+      display: block;
+      margin-bottom: .5rem;
+      margin-top: 1rem;
+    }
+
+    body {
+      margin: 0;
+      background: #ccc;
+    }
+
+    input {
+      display: block;
+    }
+
+    .button-creator {
+      display: grid;
+      grid-gap: 30px;
+      padding: 30px;
+      grid-template-columns: 200px 1fr;
+    }
+
+    #controles {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .875rem;
+      background: #eee;
+      padding: 1rem;
+      border-radius: 4px;
+      box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.1)
+    }
+
+    .css {
+      font-family: monospace;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      margin-top: 40px;
+    }
+
+    .css span {
+      display: block;
+      margin: 0 0 .5rem 0;
+    }
+  </style>
+  <title>Document</title>
+</head>
+
+<body>
+  <section class="button-creator">
+    <form id="controles">
+      <label for="texto">Texto</label>
+      <input type="text" name="texto">
+
+      <label for="color">cores</label>
+      <input type="color" name="color" id="color">
+
+      <label for="backgroundColor">color</label>
+      <input type="color" name="backgroundColor" id="backgroundColor">
+
+      <label for="height">Height</label>
+      <input type="range" name="height" id="height" min="0" max="200">
+
+      <label for="width">width</label>
+      <input type="range" name="width" id="width" min="0" max="600">
+
+
+      <label for="border">border</label>
+      <input type="text" name="border" id="border">
+      <label for="borderRadius">border-radius</label>
+      <input type="range" name="borderRadius" id="borderRadius" min="0" max="20">
+      <select name="fontFamily" id="fontFamily">
+        <option value="Arial">Arial</option>
+        <option value="Georgia">Georgia</option>
+        <option value="monospace">monospace</option>
+      </select>
+      <label for="fontSize">fonte size</label>
+      <input type="text" name="fontSize" id="fontSize">
+
+    </form>
+
+
+
+  </section>
+  <section>
+    <button class="btn">Clique</button>
+    <pre>
+      <code class="css">
+        <span class="cssText"></span>
+      </code>
+
+    </pre>
+
+
+  </section>
+  <script>
+    const controles = document.querySelector('#controles');
+    const css = document.querySelector('.css');
+    const btn = document.querySelector('.btn');
+    const cssText = document.querySelector('.cssText');
+
+    controles.addEventListener('change', handleChange);
+
+
+    handleElement = {
+      element: btn,
+      backgroundColor(value) {
+        this.element.style.backgroundColor = value;
+      },
+      height(value) {
+        this.element.style.height = value + 'px';
+      },
+      width(value) {
+        this.element.style.width = value + 'px';
+      },
+      texto(value) {
+        this.element.innerText = value;
+
+      },
+      color(value) {
+        this.element.style.color = value;
+      },
+
+
+
+      border(value) {
+        this.element.style.border = value;
+      },
+      borderRadius(value) {
+        this.element.style.borderRadius = value + 'px';
+      },
+      fontFamily(value) {
+        this.element.style.fontFamily = value;
+      },
+      fontSize(value) {
+        this.element.style.fontSize = value + 'px';
+      }
+    }
+
+
+    function handleChange(event) {
+      const name = event.target.name
+      const value = event.target.value
+
+
+
+      handleElement[name](value);
+      showCss();
+    }
+    function showCss() {
+      cssText.innerHTML = btn.style.cssText.split(';').join('; </span><span>')
+    }
+
+
+  </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+
+
+</script>
